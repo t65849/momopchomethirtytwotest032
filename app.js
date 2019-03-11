@@ -54,7 +54,7 @@ app.post('/messages', function (request, response) {
             if (results[idx].message.type == 'text') {
                 /*SendMessage(acct, results[idx].message.text, 'momopchomethirtytwotest032', reply_token, function (ret) {
                 });*/
-                SendMessage(acct, '滿100送1000000', 'momopchomethirtytwotest032', reply_token, function (ret) {
+                SendMessage(acct, results[idx].message.text, 'momopchomethirtytwotest032', reply_token, function (ret) {
                 });
             }
         }
