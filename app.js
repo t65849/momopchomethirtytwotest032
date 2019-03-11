@@ -29,7 +29,7 @@ var config = require('fs').readFileSync(__dirname + '/config.json');
 config = JSON.parse(config); //字串轉物件
 
 app.get('/api', function (request, response) {
-    response.send('API is running');
+    response.send('API is running test');
 });
 
 app.get('/logs', function (request, response) {
