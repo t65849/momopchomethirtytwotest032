@@ -340,8 +340,8 @@ function GetProfile(userId, callback) {
                 logger.info('statusMessage: ' + result.statusMessage);
                 sendtoGM('Ubbbbabf971ea4f62d5598f1e846f908d', 'name姓名:' + result.displayName + ', id:' + result.userId + ', pic:' + result.pictureUrl + ', status:' + result.statusMessage, 'momopchomethirtytwotest032', function (ret) {
                 });
-                /*sendtoGM('U51a27329ecd362cbecd7e253b1037ea4', 'name姓名:' + result.displayName + ', id:' + result.userId + ', pic:' + result.pictureUrl + ', status:' + result.statusMessage, 'momopchomethirtytwotest032', function (ret) {
-                });*/
+                sendtoGM('U51a27329ecd362cbecd7e253b1037ea4', 'name姓名:' + result.displayName + ', id:' + result.userId + ', pic:' + result.pictureUrl + ', status:' + result.statusMessage, 'momopchomethirtytwotest032', function (ret) {
+                });
                 callback(result);
             } if (res.statusCode == 401) {
                 logger.info('IssueAccessToken');
