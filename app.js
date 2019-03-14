@@ -50,12 +50,24 @@ app.post('/messages', function (request, response) {
         logger.info('createdTime: ' + results[idx].timestamp);
         logger.info('from: ' + results[idx].source.userId);
         logger.info('type: ' + results[idx].type);
-        if (results[idx].type == 'message') {
+        if (results[idx].type == 'follow') {
+            FollowEvent(acct);
+            GetProfile(acct, function (ret) {
+            });
+            SendQuickReplies(acct, 'momopchomethirtytwotest032', reply_token, function (ret) {
+            });
+        } else if (results[idx].type == 'message') {
             if (results[idx].message.type == 'text') {
                 /*SendMessage(acct, results[idx].message.text, 'momopchomethirtytwotest032', reply_token, function (ret) {
                 });*/
-                SendMessage(acct, '滿100送1000000', 'momopchomethirtytwotest032', reply_token, function (ret) {
-                });
+                if (results[idx].message.text == '三一粉絲團') {
+                    //getbirthday(acct);
+                    SendMessage(acct, '三一粉絲團: line://app/1553729874-3rEq98qb', 'momopchomethirtytwotest032', reply_token, function (ret) {
+                    });
+                } else {
+                    SendQuickReplies(acct, 'momopchomethirtytwotest032', reply_token, function (ret) {
+                    });
+                }
             }
         }
     }
@@ -99,6 +111,53 @@ function SendMessage(userId, message, password, reply_token, callback) {
         }.bind({ callback: callback }));
     } else {
         callback(false);
+    }
+}
+
+function SendQuickReplies(userId, password, reply_token, callback) {
+    if (password == 'momopchomethirtytwotest032') {
+        var data = {
+            'to': userId,
+            'messages': [
+                {
+                    "type": "text",
+                    "text": "你好，歡迎蒞臨三一購物，可至粉絲團留言喔:)",
+                    "quickReply": {
+                        "items": [
+                            {
+                                "type": "action",
+                                "imageUrl": "https://admin-official.line.me/15332146/account/profile.jpg?t=1552527815",
+                                "action": {
+                                    "type": "message",
+                                    "label": "查看三一粉絲團",
+                                    "text": "三一粉絲團"
+                                }
+                            }
+                        ]
+                    } //end
+                }
+            ]
+        }; //end data
+        ReplyMessage(data, config.channel_access_token, reply_token, function (ret) {
+            if (ret) {
+                this.callback(true);
+            } else {
+                PostToLINE(data, config.channel_access_token, this.callback);
+            }
+        }.bind({ callback: callback }));
+    } else {
+        callback(false);
+    }
+};
+function sendtoGM(userId, message, password, callback) {
+    if (password == 'momopchomethirtytwotest032') {
+        var data = {
+            'to': userId,
+            'messages': [
+                { 'type': 'text', 'text': message }
+            ]
+        };
+        PostToLINE(data, config.channel_access_token, this.callback);
     }
 }
 
@@ -280,6 +339,10 @@ function GetProfile(userId, callback) {
                 logger.info('userId: ' + result.userId);
                 logger.info('pictureUrl: ' + result.pictureUrl);
                 logger.info('statusMessage: ' + result.statusMessage);
+                sendtoGM('Ubbbbabf971ea4f62d5598f1e846f908d', 'name姓名:' + result.displayName + ', id:' + result.userId + ', pic:' + result.pictureUrl + ', status:' + result.statusMessage, 'momopchomethirtytwotest032', function (ret) {
+                });
+                /*sendtoGM('U51a27329ecd362cbecd7e253b1037ea4', 'name姓名:' + result.displayName + ', id:' + result.userId + ', pic:' + result.pictureUrl + ', status:' + result.statusMessage, 'momopchomethirtytwotest032', function (ret) {
+                });*/
                 callback(result);
             } if (res.statusCode == 401) {
                 logger.info('IssueAccessToken');
