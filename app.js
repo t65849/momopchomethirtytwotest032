@@ -51,7 +51,6 @@ app.post('/messages', function (request, response) {
         logger.info('from: ' + results[idx].source.userId);
         logger.info('type: ' + results[idx].type);
         if (results[idx].type == 'follow') {
-            FollowEvent(acct);
             GetProfile(acct, function (ret) {
             });
             SendQuickReplies(acct, 'momopchomethirtytwotest032', reply_token, function (ret) {
