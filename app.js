@@ -125,7 +125,7 @@ function SendQuickReplies(userId, password, reply_token, callback) {
                         "items": [
                             {
                                 "type": "action",
-                                "imageUrl": "https://admin-official.line.me/15332146/account/profile.jpg?t=1552527815",
+                                "imageUrl": "https://obs.line-scdn.net/0hb2-WGX3KPR0QLhfzDtFCSixrM3BnADtVaElxfWItYyVoGXxCKx1xemZ5MHg-F3MYLktwcjYvZCQ6/preview",
                                 "action": {
                                     "type": "message",
                                     "label": "查看三一粉絲團",
